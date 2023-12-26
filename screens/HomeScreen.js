@@ -74,7 +74,7 @@ const HomeScreen = () => {
       });
 
       for (let item of response) {
-        let direccion = `${item.name} ${item.city} ${item.postalCode}`;
+        let direccion = `${item.city}`;
         setDireccionActual(direccion);
       }
     }
