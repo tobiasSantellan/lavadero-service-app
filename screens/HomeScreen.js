@@ -1,6 +1,18 @@
-import { StyleSheet, Text, View, SafeAreaView, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Alert,
+  Pressable,
+  Image,
+  TextInput,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import Carousel from "../components/Carousel";
 
 const HomeScreen = () => {
   const [direccionActual, setDireccionActual] = useState(
@@ -61,8 +73,6 @@ const HomeScreen = () => {
         longitude,
       });
 
-      console.log(response);
-
       for (let item of response) {
         let direccion = `${item.name} ${item.city} ${item.postalCode}`;
         setDireccionActual(direccion);
@@ -71,7 +81,41 @@ const HomeScreen = () => {
   };
   return (
     <SafeAreaView>
-      <Text>HomeScreen</Text>
+      {/* {Ubicacion y Perfil} */}
+      <View style={{ flexDirection: "row", alignItems: "center", padding: 20 }}>
+        <MaterialIcons name="location-on" size={24} color="#fd5c63" />
+        <View>
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
+          <Text>{direccionActual}</Text>
+        </View>
+        <Pressable style={{ marginLeft: "auto", marginRight: 7 }}>
+          <Image
+            style={{ width: 40, height: 40, borderRadius: 20 }}
+            source={{
+              uri: "https://scontent.faep9-1.fna.fbcdn.net/v/t1.6435-9/53362510_953097241555468_2868619321402195968_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=be3454&_nc_eui2=AeGMONnw3dPNm1PxgbejDXHEvLZ-sSnow6S8tn6xKejDpBOV2Gt1z6nSfKl3uoQNR8onaTNocD4-rV4pvD2QHegV&_nc_ohc=EwnVIeZt2ZkAX-ngUD7&_nc_ht=scontent.faep9-1.fna&oh=00_AfASRbpiLH167REYJo5a2bbij0ADtEwfYjb6X_otDJZWtA&oe=65B26D53",
+            }}
+          />
+        </Pressable>
+      </View>
+
+      {/* {Barra de Busqueda} */}
+      <View
+        style={{
+          padding: 10,
+          margin: 10,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          borderWidth: 0.8,
+          borderColor: "#C0C0C0",
+          borderRadius: 7,
+        }}
+      >
+        <TextInput placeholder="Buscar artículos o más" />
+        <Feather name="search" size={24} color="#fd5c63" />
+      </View>
+      {/* {Carousel Imagen} */}
+      <Carousel />
     </SafeAreaView>
   );
 };
