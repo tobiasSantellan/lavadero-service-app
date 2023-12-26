@@ -26,7 +26,7 @@ const Services = () => {
   ];
   return (
     <View>
-      <Text>Services</Text>
+      <Text>Servicios</Text>
     </View>
   );
 };
